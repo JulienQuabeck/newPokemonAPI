@@ -3,12 +3,13 @@
         <img src="../../../assets/img/logo.png">
     </div>
     <div class="search-container">
-        <input type="text" class="search-field" placeholder="search for pokemon" *ngIf="language == 'english'">
+        <input type="text" class="search-field" placeholder="search for a pokemon" *ngIf="language == 'english'">
         <input type="text" class="search-field" placeholder="suche nach einem Pokemon" *ngIf="language == 'german'">
         <a href="#" *ngIf="language == 'english'"> search </a>   
         <a href="#" *ngIf="language == 'german'"> suchen </a>    
     </div>
-    <div class="languages">
-        <img src="../../../assets/img/languages/english.png">
+    <div class="languages" (click)="switchLanguage()">
+        <p>TEST</p>
+        <!-- <img src="../../../assets/img/languages/{{language}}.png" (click)="switchLanguage()"> -->
     </div>
 </section>

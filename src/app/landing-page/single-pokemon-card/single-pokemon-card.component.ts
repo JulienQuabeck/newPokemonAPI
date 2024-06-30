@@ -1,11 +1,11 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { SinglePokemonInfoComponent } from './single-pokemon-info/single-pokemon-info.component';
-import { NgIf } from '@angular/common';
+import { NgClass, NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-single-pokemon-card',
   standalone: true,
-  imports: [SinglePokemonInfoComponent, NgIf],
+  imports: [SinglePokemonInfoComponent, NgIf, NgClass],
   templateUrl: './single-pokemon-card.component.html',
   styleUrl: './single-pokemon-card.component.scss'
 })
@@ -16,8 +16,7 @@ export class SinglePokemonCardComponent {
   
   @Input() PokemonObject: any;
 
-  constructor() {
-  }
+  constructor() {}
 
   openCard() {
     this.openSinglePokemonInfo = true;

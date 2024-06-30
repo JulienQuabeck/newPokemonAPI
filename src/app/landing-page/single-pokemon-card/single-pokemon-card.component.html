@@ -1,4 +1,4 @@
-<section (click)="openCard()">
+<section (click)="openCard()" [ngClass]="{'grass': this.PokemonObject.types[0].type.name == 'grass','fire': this.PokemonObject.types[0].type.name == 'fire', 'water': this.PokemonObject.types[0].type.name == 'water', 'bug': this.PokemonObject.types[0].type.name == 'bug'}">
     <div>id: {{PokemonObject.id}}</div>
     <div>name: {{PokemonObject.name}}</div>
     <div class="Pokemon-img"><img src="{{PokemonObject.sprites.other.home.front_default}}"></div>

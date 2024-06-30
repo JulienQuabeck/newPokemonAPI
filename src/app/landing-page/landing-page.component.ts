@@ -16,19 +16,26 @@ export class LandingPageComponent {
   constructor() {
     this.renderPokemon();
   }
-  Pokemon: any = [];
 
-  async renderPokemon(){
-    for(let i = 1; i<=20; i++){
-      let urlOfApi = `https://pokeapi.co/api/v2/pokemon/${i}?limit=20&offset=20`;
+  Pokemon: any = [];
+  noOfPokemon = 20;
+
+  async renderPokemon() {
+    for (let i = this.Pokemon.length+1; i <= this.noOfPokemon; i++) {
+      let urlOfApi = `https://pokeapi.co/api/v2/pokemon/${i}?limit=${this.noOfPokemon}&offset=20`;
       let response = await fetch(urlOfApi);
-      try{
+      try {
         let responseAsJson = await response.json();
         this.Pokemon.push(responseAsJson);
-      }catch(e){
+      } catch (e) {
         console.error(e);
       }
     }
     console.log(this.Pokemon);
+  }
+
+  loadMorePokemon() {
+    this.noOfPokemon += +20;
+    this.renderPokemon();
   }
 }

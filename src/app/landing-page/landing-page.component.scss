@@ -6,6 +6,7 @@ section {
     width: 100%;
     min-height: 86vh;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
 
@@ -21,5 +22,18 @@ section {
     aside{
         margin:20px;
         display:flex;
+    }
+
+    a{
+        border:3px solid whitesmoke;
+        border-radius:10px;
+        padding:5px;
+        text-align:center;
+        margin:20px;
+        &:hover{
+            cursor:pointer;
+            background-color:whitesmoke;
+            color:rgb(5, 23, 41);
+        }
     }
 }

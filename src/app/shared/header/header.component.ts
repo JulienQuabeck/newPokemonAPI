@@ -11,4 +11,12 @@ import { Component } from '@angular/core';
 export class HeaderComponent {
 
   language = 'english';
+
+  switchLanguage(){
+    if(this.language=='english'){
+      this.language = 'german';
+    }else{
+      this.language = 'english';
+    }
+  }
 }
