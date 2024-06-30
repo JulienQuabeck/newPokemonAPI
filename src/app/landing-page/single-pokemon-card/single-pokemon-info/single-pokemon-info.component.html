@@ -1,0 +1,88 @@
+<section>
+    <div class="closeSinglePokemonInfoContainer">
+        <p (click)="closeSinglePokemonInfo()">X</p>
+    </div>
+    <div class="Pokemon-img"><img src="{{Pokemon.sprites.other.home.front_default}}"></div>
+    <div class="Category">
+        <div class="category-name">id: </div>
+        <div class="singleElements">{{Pokemon.id}}</div>
+    </div>
+    <div class="Category">
+        <div class="category-name">name: </div>
+        <div class="singleElements">{{Pokemon.name}}</div>
+    </div>
+    <div class="Category">
+        <div class="category-name">typ: </div>
+        <div class="ngFor" *ngFor="let types of Pokemon.types, let no = index">
+            <p>{{types.type.name}},</p>
+        </div>
+    </div>
+    <div class="Category">
+        <div class="category-name">height: </div>
+        <div class="singleElements">{{Pokemon.height}}</div>
+    </div>
+    <div class="Category">
+        <div class="category-name">weight: </div>
+        <div class="singleElements">{{Pokemon.weight}}</div>
+    </div>
+    <div class="Category">
+        <div class="category-name">moves: </div>
+        <div class="scroll">
+            <div class="info container" *ngFor="let moves of Pokemon.moves, let no = index">
+                {{no+1}}. {{moves.move.name}}
+            </div>
+        </div>
+    </div>
+    <div class="Category">
+        <div class="category-name">stats: </div>
+        <div class="scroll">
+            <div class="info container" *ngFor="let stats of Pokemon.stats, let no = index">
+                {{no+1}}. {{stats.stat.name}}: {{stats.base_stat}}
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+    <!-- <div>
+        <div class="closeSinglePokemonInfoContainer">
+            <p (click)="closeSinglePokemonInfo()">X</p>
+        </div>
+        <div class="category top-category">
+            id: {{Pokemon.id}}
+        </div>
+        <div class="category">
+            name: {{Pokemon.name}}
+        </div>
+        <div class="Pokemon-img"><img src="{{Pokemon.sprites.front_default}}"></div>
+        <div class="category">Typ:
+            <div class="ContainerWithNoScroll">
+                <div class="info container" *ngFor="let types of Pokemon.types, let no = index">
+                    {{no+1}}. {{types.type.name}}
+                </div>
+            </div>
+        </div>
+        <div class="category">
+            height: {{Pokemon.height}}
+        </div>
+        <div class="category">
+            weight: {{Pokemon.weight}}
+        </div>
+        <div class="category">moves:
+            <div class="scroll">
+                <div class="info container" *ngFor="let moves of Pokemon.moves, let no = index">
+                    {{no+1}}. {{moves.move.name}}
+                </div>
+            </div>
+        </div>
+        <div class="category">stats:
+            <div class="scroll">
+                <div class="info container" *ngFor="let stats of Pokemon.stats, let no = index">
+                    {{no+1}}. {{stats.stat.name}}: {{stats.base_stat}}
+                </div>
+            </div>
+        </div>
+    </div> -->
+</section>

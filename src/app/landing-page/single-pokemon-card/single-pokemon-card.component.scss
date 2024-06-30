@@ -1,0 +1,28 @@
+section{
+    display:flex;
+    flex-direction:column;
+    border: 1px solid black;
+    border-radius:10px;
+    box-shadow: 5px 5px 20px 1px black;
+    width:300px;
+    height:300px;
+    margin:10px;
+    div{
+        margin-left:10px;
+    }
+
+    &:hover{
+        cursor:pointer;
+        width:310px;
+        height:310px;
+        margin:5px;
+    }
+}
+
+.Pokemon-img{
+    display:flex;
+    justify-content: center;
+    img{
+        width:150px;
+    }
+}

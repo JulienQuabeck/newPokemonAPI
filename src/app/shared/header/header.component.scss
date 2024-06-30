@@ -1,0 +1,46 @@
+section{
+    background-color:rgb(2, 16, 30);
+    display:flex;
+    justify-content: space-between;
+    align-items:center;
+    height:7vh;
+
+    input{
+        height:30px;
+        width:200px;
+        padding-left:10px;
+        border-radius:10px;
+    }
+}
+
+.logo{
+    margin-left:100px;
+
+    &:hover{
+        transform: rotate(360deg);
+    }
+}
+
+.search-container{
+    width:400px;
+    margin-right:100px;
+    display: flex;
+
+    a{
+        margin-left:20px;
+        display:block;
+        color:whitesmoke;
+        text-decoration:none;
+        font-size:20px;
+        border: 1px solid whitesmoke;
+        width:100px; 
+        border-radius:10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        &:hover{
+            font-size:25px;
+        }
+    }
+}

@@ -1,0 +1,97 @@
+section {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom:50px;
+    max-height:92vh;
+    background-color: rgb(5, 23, 41);
+    border: 1px solid whitesmoke;
+    box-shadow: 10px 10px 10px 10px black;
+
+    div {
+        position: relative;
+
+        img {
+            position: absolute;
+            top: 0px;
+            right: 50px;
+            width: 400px;
+            height: 400px;
+        }
+    }
+}
+
+.closeSinglePokemonInfoContainer {
+    background-color: red;
+    position: relative;
+    width: 100%;
+    z-index: 2;
+
+    p {
+        position: absolute;
+        margin: 0;
+        top: 10px;
+        right: 20px;
+
+        &:hover {
+            cursor: pointer;
+        }
+    }
+}
+
+.top-category {
+    margin-top: 50px;
+}
+
+.category {
+    margin-bottom: 50px;
+    margin-left: 50px;
+    display: flex;
+}
+
+.info {
+    margin-left: 10px;
+}
+
+.ContainerWithNoScroll {
+    margin-left: 50px;
+    height: 100px;
+    width: 400px;
+    border-radius: 10px;
+    border: 1px solid whitesmoke;
+}
+
+.scroll {
+    height: 200px;
+    width: 400px;
+    overflow-y: scroll;
+    border-radius: 10px;
+    border: 1px solid whitesmoke;
+}
+
+.container {
+    display: flex;
+}
+
+.Category {
+    display: flex;
+    margin-bottom:20px;
+
+    .category-name {
+        margin-left: 20px;
+        width: 200px;
+    }
+}
+
+.singleElements {
+    margin-left: 10px;
+}
+
+.ngFor {
+    margin-left: 10px;
+
+    p {
+        margin: 0;
+    }
+}
