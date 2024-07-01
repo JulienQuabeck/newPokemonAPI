@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { HeaderComponent } from '../shared/header/header.component';
+import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from '../shared/footer/footer.component';
 import { SinglePokemonCardComponent } from './single-pokemon-card/single-pokemon-card.component';
 import { NgClass, NgFor, NgIf } from '@angular/common';
@@ -13,6 +13,8 @@ import { NgClass, NgFor, NgIf } from '@angular/common';
 })
 export class LandingPageComponent {
 
+  allTypes: string[] = [];
+
   constructor() {
     this.renderPokemon();
   }
@@ -21,7 +23,7 @@ export class LandingPageComponent {
   noOfPokemon = 20;
 
   async renderPokemon() {
-    for (let i = this.Pokemon.length+1; i <= this.noOfPokemon; i++) {
+    for (let i = this.Pokemon.length + 1; i <= this.noOfPokemon; i++) {
       let urlOfApi = `https://pokeapi.co/api/v2/pokemon/${i}?limit=${this.noOfPokemon}&offset=20`;
       let response = await fetch(urlOfApi);
       try {
@@ -32,10 +34,24 @@ export class LandingPageComponent {
       }
     }
     console.log(this.Pokemon);
+    await this.getAllTypes();
   }
 
   loadMorePokemon() {
     this.noOfPokemon += +20;
     this.renderPokemon();
+  }
+
+  getAllTypes() {
+    for (let i = 0; i < this.Pokemon.length; i++) {
+      for (let j = 0; j < this.Pokemon[i].types.length; j++) {
+        let newTyp = this.Pokemon[i].types[j].type.name;
+        if (this.allTypes.includes(newTyp)) {
+
+        } else {
+          this.allTypes.push(newTyp);
+        }
+      }
+    }
   }
 }

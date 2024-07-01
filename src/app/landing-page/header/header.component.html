@@ -1,0 +1,26 @@
+<section class="header-container">
+    <div class="logo">
+        <img src="../../../assets/img/logo.png">
+    </div>
+    <div class="search-container">
+        <input [(ngModel)]="searchValue" type="text" class="search-field" placeholder="search for a pokemon"
+            *ngIf="language == 'english'">
+        <input type="text" class="search-field" placeholder="suche nach einem Pokemon" *ngIf="language == 'german'">
+        <a href="#" *ngIf="language == 'english'" (click)="search()"> search </a>
+        <a href="#" *ngIf="language == 'german'" (click)="search()"> suchen </a>
+        <a href="#" *ngIf="language == 'english'" (click)="openFilter()">filter</a>
+        <a href="#" *ngIf="language == 'german'" (click)="openFilter()">Filter</a>
+    </div>
+    <div class="languages" (click)="switchLanguage()">
+        <p>TEST</p>
+        <!-- <img src="../../../assets/img/languages/{{language}}.png" (click)="switchLanguage()"> -->
+    </div>
+    <div class="filter-container" *ngIf="openFilterContainer==true">
+        <div class="single-type" *ngFor="let types of types">
+            <div>
+                <input type="checkbox">
+                <div>{{types}}</div>
+            </div>
+        </div>
+    </div>
+</section>
