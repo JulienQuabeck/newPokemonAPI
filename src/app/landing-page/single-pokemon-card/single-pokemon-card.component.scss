@@ -1,44 +1,94 @@
-section{
-    display:flex;
-    flex-direction:column;
+section {
+    display: flex;
+    flex-direction: column;
     border: 1px solid black;
-    border-radius:10px;
+    border-radius: 10px;
     box-shadow: 5px 5px 20px 1px black;
-    width:300px;
-    height:300px;
-    margin:10px;
-    div{
-        margin-left:10px;
+    width: 300px;
+    height: 300px;
+    margin: 10px;
+
+    div {
+        margin-left: 10px;
     }
 
-    &:hover{
-        cursor:pointer;
-        width:310px;
-        height:310px;
-        margin:5px;
+    &:hover {
+        cursor: pointer;
+        width: 310px;
+        height: 310px;
+        margin: 5px;
     }
 }
 
-.Pokemon-img{
-    display:flex;
+.Pokemon-img {
+    display: flex;
     justify-content: center;
-    img{
-        width:150px;
+
+    img {
+        width: 150px;
     }
 }
 
-.grass{
-    background-color:rgb(143, 230, 143);
+.grass {
+    background-color: rgba(143, 230, 143, 0.5);
 }
 
-.fire{
-    background-color:rgb(234, 118, 118);
+.fire {
+    background-color: rgba(234, 118, 118, 0.5);
 }
 
-.water{
-    background-color:rgb(100, 100, 247);
+.water {
+    background-color: rgba(100, 100, 247, 0.5);
 }
 
-.bug{
-    background-color:rgb(206, 170, 252);
+.bug {
+    background-color: rgba(206, 170, 252, 0.5);
+}
+
+.poison {
+    background-color: rgba(120, 100, 146, 0.5)
+}
+
+.ground {
+    background-color: rgba(165, 42, 42, 0.5);
+}
+
+.electric {
+    background-color: rgba(255, 234, 0, 0.5);
+}
+
+.fairy {
+    background-color: rgba(255, 192, 203, 0.5);
+}
+
+.fighting {
+    background-color: rgba(102, 205, 170, 0.5); //anpassen
+}
+
+.psychic {
+    background-color: rgba(175, 130, 130, 0.5); //anpassen
+}
+
+.rock {
+    background-color: rgba(128, 128, 128, 0.5);
+}
+
+.ghost {
+    background-color: rgba(199, 199, 199, 0.5);
+}
+
+.ice {
+    background-color: rgba(150, 150, 250, 0.5); //anpassen
+}
+
+.dragon {
+    background-color: rgba(50, 50, 250, 0.5);
+}
+
+.dark {
+    background-color: rgba(30, 25, 36, 0.5);
+}
+
+.steel {
+    background-color: rgba(192, 192, 192, 0.5);
 }

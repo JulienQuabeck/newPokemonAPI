@@ -1,11 +1,11 @@
-import { NgFor } from '@angular/common';
+import { NgClass, NgFor } from '@angular/common';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-single-pokemon-info',
   standalone: true,
-  imports: [FormsModule, NgFor],
+  imports: [FormsModule, NgFor, NgClass],
   templateUrl: './single-pokemon-info.component.html',
   styleUrl: './single-pokemon-info.component.scss'
 })
