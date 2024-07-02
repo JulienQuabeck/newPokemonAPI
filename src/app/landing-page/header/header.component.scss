@@ -22,7 +22,7 @@ section {
 }
 
 .search-container {
-    width: 400px;
+    width: 500px;
     margin-right: 100px;
     display: flex;
 
@@ -79,4 +79,8 @@ section {
         align-items: center;
         flex-wrap:wrap;
     }
+}
+
+.widerButton{
+    width:120px !important;
 }

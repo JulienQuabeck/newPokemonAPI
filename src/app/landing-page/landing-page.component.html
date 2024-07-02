@@ -1,12 +1,15 @@
-<app-header id="top" [types]="allTypes"></app-header>
+<app-header id="top" [types]="allTypes" [Pokemon]="this.Pokemon" (IndexOfSearchedPokemon)="searchPokemonWithIndex($event)" (filter)="collectFilter($event)"></app-header>
 <section class="landingPage-Background">
     <div class="all-Pokemon">
         <aside class="single-Pokemon" *ngFor="let PokemonObj of Pokemon">
             <app-single-pokemon-card [PokemonObject]="PokemonObj"></app-single-pokemon-card>
         </aside>
     </div>
-    <div (click)="loadMorePokemon()">
-        <a>load 20 more</a>
+    <div *ngIf="!this.activeSearch" (click)="loadMorePokemon()">
+        <a *ngIf="!this.activeSearch">load 20 more</a>
+    </div>
+    <div *ngIf="this.activeSearch" (click)="renderOldVersionOfPokemon()">
+        <a *ngIf="this.activeSearch">back</a>
     </div>
     <div class="backToTop">
         <a href="#top" class="goToTop"><img src="../../assets/img/arrowUp1.png"></a>

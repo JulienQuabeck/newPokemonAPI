@@ -1,5 +1,5 @@
 import { NgFor, NgIf } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 @Component({
@@ -12,11 +12,28 @@ import { FormsModule } from '@angular/forms';
 export class HeaderComponent {
 
   @Input() types: string[] = [];
+  @Input() Pokemon: any = [];
+  @Output() filter = new EventEmitter;
+  @Output() IndexOfSearchedPokemon = new EventEmitter;
+
 
   searchValue = '';
   openFilterContainer = false;
   language = 'english';
+  pokemonNames: string[] = [];
+  indexOfSearch: number = 0;
 
+  /**
+   * This function sends all Pokemon types to the landing-page.Component.ts
+   * @param types : string
+   */
+  sendFilterToLandingPage(types: string) {
+    this.filter.emit(types);
+  }
+
+  /**
+   * This function lets the user change between 2 languages
+   */
   switchLanguage() {
     if (this.language == 'english') {
       this.language = 'german';
@@ -25,16 +42,33 @@ export class HeaderComponent {
     }
   }
 
+  /**
+   * This function determines the index of the search Pokemon
+   */
   search() {
     this.searchValue = this.searchValue.toLowerCase();
-    console.log(this.searchValue);
+    for (let i = 0; i < this.Pokemon.length; i++) {
+      this.pokemonNames.push(this.Pokemon[i].name);
+    }
+    this.indexOfSearch = this.pokemonNames.indexOf(this.searchValue);
+    this.sendIndexOfSearchedPokemon();
     this.searchValue = '';
   }
 
+  /**
+   * This function sends the index of the searched Pokemon to the landing-page.Component.ts
+   * @param indexOfSearch : number
+   */
+  sendIndexOfSearchedPokemon() {
+    this.IndexOfSearchedPokemon.emit(this.indexOfSearch);
+  }
+
+  /**
+   * This function opens the Filter-Container
+   */
   openFilter() {
     if (this.openFilterContainer == false) {
       this.openFilterContainer = true;
-      console.log(this.types);
     } else {
       this.openFilterContainer = false;
     }
