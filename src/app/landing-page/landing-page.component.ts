@@ -16,6 +16,7 @@ export class LandingPageComponent {
   allTypes: string[] = [];
   indexOfSearchedPokemon: any;
 
+
   constructor() {
     this.renderPokemon();
   }
@@ -133,7 +134,13 @@ export class LandingPageComponent {
     this.renderPokemon();
   }
 
+  /**
+   * This function changes the langues and loads the Pokemon again
+   * @param language:string
+   */
   changeLanguage(language:string){
-    this.usedLanguage = language;
+    this.usedLanguage = language; 
+    this.Pokemon = [];
+    this.renderPokemon();
   }
 }

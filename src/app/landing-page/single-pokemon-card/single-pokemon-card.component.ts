@@ -15,6 +15,7 @@ export class SinglePokemonCardComponent {
   openSinglePokemonInfo = false;
   
   @Input() PokemonObject: any;
+  @Input() usedLanguage: any;
 
   constructor() {}
 

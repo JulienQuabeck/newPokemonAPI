@@ -12,6 +12,4 @@ export class FooterComponent {
 
 @Input() usedLanguage = '';
 
-
-
 }

@@ -1,7 +1,10 @@
 <section (click)="openCard()" [ngClass]="{'grass': this.PokemonObject.types[0].type.name == 'grass','fire': this.PokemonObject.types[0].type.name == 'fire', 'water': this.PokemonObject.types[0].type.name == 'water', 'bug': this.PokemonObject.types[0].type.name == 'bug', 'poison': this.PokemonObject.types[0].type.name == 'poison', 'ground': this.PokemonObject.types[0].type.name == 'ground', 'electric': this.PokemonObject.types[0].type.name == 'electric', 'fairy': this.PokemonObject.types[0].type.name == 'fairy', 'fighting': this.PokemonObject.types[0].type.name == 'fighting', 'psychic': this.PokemonObject.types[0].type.name == 'psychic', 'rock': this.PokemonObject.types[0].type.name == 'rock', 'ghost': this.PokemonObject.types[0].type.name == 'ghost', 'ice': this.PokemonObject.types[0].type.name == 'ice', 'dragon': this.PokemonObject.types[0].type.name == 'dragon', 'dark': this.PokemonObject.types[0].type.name == 'dark', 'steel': this.PokemonObject.types[0].type.name == 'steel'}">
-    <div>id: {{PokemonObject.id}}</div>
-    <div>name: {{PokemonObject.name}}</div>
-    <div>typ: {{PokemonObject.types[0].type.name}}</div>
+    <div *ngIf="usedLanguage == 'english'">id: {{PokemonObject.id}}</div>
+    <div *ngIf="usedLanguage == 'german'">Id: {{PokemonObject.id}}</div>
+    <div *ngIf="usedLanguage == 'english'">name: {{PokemonObject.name}}</div>
+    <div *ngIf="usedLanguage == 'german'">Name: {{PokemonObject.name}}</div>
+    <div *ngIf="usedLanguage == 'english'">typ: {{PokemonObject.types[0].type.name}}</div>
+    <div *ngIf="usedLanguage == 'german'">Typ: {{PokemonObject.types[0].type.name}}</div>
     <div class="Pokemon-img"><img src="{{PokemonObject.sprites.other.dream_world.front_default}}"></div>
 </section>
 <app-single-pokemon-info *ngIf="openSinglePokemonInfo == true" (CloseInfo)="CloseInfoContainer()" [Pokemon]="PokemonObject"></app-single-pokemon-info>
