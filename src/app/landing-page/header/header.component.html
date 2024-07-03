@@ -18,7 +18,7 @@
     <div class="filter-container" *ngIf="openFilterContainer==true">
         <div class="single-type" *ngFor="let types of types">
             <div>
-                <input type="checkbox" (click)="sendFilterToLandingPage(types)">
+                <input type="checkbox" id="{{types}}" (click)="sendFilterToLandingPage(types)">
                 <div>{{types}}</div>
             </div>
         </div>

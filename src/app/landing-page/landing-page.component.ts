@@ -14,7 +14,7 @@ import { NgClass, NgFor, NgIf } from '@angular/common';
 export class LandingPageComponent {
 
   allTypes: string[] = [];
-indexOfSearchedPokemon: any;
+  indexOfSearchedPokemon: any;
 
   constructor() {
     this.renderPokemon();
@@ -26,8 +26,11 @@ indexOfSearchedPokemon: any;
   loadedPokemon: any = [];
   filteredPokemon: any = [];
   activeSearch: boolean = false;
-  searchedPokemon:number = 0;
+  searchedPokemon: number = 0;
 
+  /**
+   * This function renders the Pokemon, which will be displayed afterwards
+   */
   async renderPokemon() {
     for (let i = this.Pokemon.length + 1; i <= this.noOfPokemon; i++) {
       let urlOfApi = `https://pokeapi.co/api/v2/pokemon/${i}?limit=${this.noOfPokemon}&offset=20`;
@@ -44,7 +47,7 @@ indexOfSearchedPokemon: any;
         console.error(e);
       }
     }
-    console.log(this.Pokemon);
+    console.log(this.Pokemon);//muss noch gelöscht werden
     await this.getAllTypes();
   }
 
@@ -72,41 +75,25 @@ indexOfSearchedPokemon: any;
     }
   }
 
-
+/**
+ * This function receives the filtered Types and displays the Pokemon which are from this typ
+ * @param type []
+ */
   collectFilter(type: string) {
-    if (this.filteredTypes.includes(type)) {
-      let position = this.filteredTypes.indexOf(type);
-      this.filteredTypes.splice(position, 1);
-      this.displayFilteredList(type);
-      if (this.filteredTypes.length == 0) {
-        this.Pokemon = [];
-        this.renderPokemon();
-      }
-      this.displayFilteredList(type);
+    this.Pokemon = [];
+    if (type == '') {
+      this.renderPokemon();
     } else {
-      this.filteredTypes.push(type);
-      this.displayFilteredList(type);
-    }
-  }
-
-  /**
-   * This function displays all the Pokemon, which has the searched typ
-   * @param searchedType: string
-   */
-  displayFilteredList(searchedType: any) {
-    this.filteredPokemon = [];
-    this.activeSearch = true;
-    for (let i = 0; i < this.Pokemon.length; i++) {
-      for (let j = 0; j < this.Pokemon[i].types.length; j++) {
-        let PokemonType = this.Pokemon[i].types[j].type.name
-        if (PokemonType == searchedType && !this.filteredPokemon.includes(this.Pokemon[i])) {
-          this.filteredPokemon.push(this.Pokemon[i]);
+      for (let i = 0; i < this.loadedPokemon.length; i++) {
+        for (let j = 0; j < this.loadedPokemon[i].types.length; j++) {
+          let TypeOfPokemon = this.loadedPokemon[i].types[j].type.name;
+          if (type.includes(TypeOfPokemon)) {
+            if (this.Pokemon.includes(this.loadedPokemon[i])) { } else {
+              this.Pokemon.push(this.loadedPokemon[i]);
+            }
+          }
         }
       }
-    }
-    this.Pokemon = [];
-    for (let i = 0; i < this.filteredPokemon.length; i++) {
-      this.Pokemon.push(this.filteredPokemon[i]);
     }
   }
 
@@ -124,22 +111,22 @@ indexOfSearchedPokemon: any;
   /**
    * This function renders the searched Pokemon only
    */
-  async rendersearchedPokemon(){
-        let urlOfApi = `https://pokeapi.co/api/v2/pokemon/${this.searchedPokemon+1}?limit=1&offset=20`;
-        let response = await fetch(urlOfApi);
-        try {
-          let responseAsJson = await response.json();
-          this.Pokemon.push(responseAsJson);
-        } catch (e) {
-          console.error(e);
-        }
-      await this.getAllTypes();
+  async rendersearchedPokemon() {
+    let urlOfApi = `https://pokeapi.co/api/v2/pokemon/${this.searchedPokemon + 1}?limit=1&offset=20`;
+    let response = await fetch(urlOfApi);
+    try {
+      let responseAsJson = await response.json();
+      this.Pokemon.push(responseAsJson);
+    } catch (e) {
+      console.error(e);
+    }
+    await this.getAllTypes();
   }
 
   /**
    * This function renders the unfilters Pokemon list
    */
-  renderOldVersionOfPokemon(){
+  renderOldVersionOfPokemon() {
     this.noOfPokemon - 20;
     this.Pokemon = [];
     this.renderPokemon();

@@ -16,6 +16,7 @@ export class HeaderComponent {
   @Output() filter = new EventEmitter;
   @Output() IndexOfSearchedPokemon = new EventEmitter;
 
+  filteredTypes: string[] = [];
 
   searchValue = '';
   openFilterContainer = false;
@@ -28,8 +29,16 @@ export class HeaderComponent {
    * @param types : string
    */
   sendFilterToLandingPage(types: string) {
-    this.filter.emit(types);
+    if (this.filteredTypes.includes(types)) {
+      let typPosition = this.filteredTypes.indexOf(types);
+      this.filteredTypes.splice(typPosition, 1);
+      this.filter.emit(this.filteredTypes);
+    } else {
+      this.filteredTypes.push(types);
+      this.filter.emit(this.filteredTypes)
+    }
   }
+  //keine einzelnen typen übertragen sondern ein Array, welches alle gefilterten typen beinhaltet
 
   /**
    * This function lets the user change between 2 languages
@@ -46,13 +55,17 @@ export class HeaderComponent {
    * This function determines the index of the search Pokemon
    */
   search() {
-    this.searchValue = this.searchValue.toLowerCase();
-    for (let i = 0; i < this.Pokemon.length; i++) {
-      this.pokemonNames.push(this.Pokemon[i].name);
+    if (this.searchValue == '') {
+
+    } else {
+      this.searchValue = this.searchValue.toLowerCase();
+      for (let i = 0; i < this.Pokemon.length; i++) {
+        this.pokemonNames.push(this.Pokemon[i].name);
+      }
+      this.indexOfSearch = this.pokemonNames.indexOf(this.searchValue);
+      this.sendIndexOfSearchedPokemon();
+      this.searchValue = '';
     }
-    this.indexOfSearch = this.pokemonNames.indexOf(this.searchValue);
-    this.sendIndexOfSearchedPokemon();
-    this.searchValue = '';
   }
 
   /**
@@ -74,5 +87,3 @@ export class HeaderComponent {
     }
   }
 }
-
-
