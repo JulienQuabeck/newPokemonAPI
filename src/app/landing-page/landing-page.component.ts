@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { HeaderComponent } from './header/header.component';
-import { FooterComponent } from '../shared/footer/footer.component';
+import { FooterComponent } from './footer/footer.component';
 import { SinglePokemonCardComponent } from './single-pokemon-card/single-pokemon-card.component';
 import { NgClass, NgFor, NgIf } from '@angular/common';
 
@@ -27,6 +27,7 @@ export class LandingPageComponent {
   filteredPokemon: any = [];
   activeSearch: boolean = false;
   searchedPokemon: number = 0;
+  usedLanguage = 'english';
 
   /**
    * This function renders the Pokemon, which will be displayed afterwards
@@ -130,5 +131,9 @@ export class LandingPageComponent {
     this.noOfPokemon - 20;
     this.Pokemon = [];
     this.renderPokemon();
+  }
+
+  changeLanguage(language:string){
+    this.usedLanguage = language;
   }
 }

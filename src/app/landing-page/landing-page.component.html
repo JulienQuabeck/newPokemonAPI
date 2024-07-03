@@ -1,4 +1,4 @@
-<app-header id="top" [types]="allTypes" [Pokemon]="this.Pokemon" (IndexOfSearchedPokemon)="searchPokemonWithIndex($event)" (filter)="collectFilter($event)"></app-header>
+<app-header id="top" [types]="allTypes" [Pokemon]="this.Pokemon" (IndexOfSearchedPokemon)="searchPokemonWithIndex($event)" (filter)="collectFilter($event)" (Language)="changeLanguage($event)"></app-header>
 <section class="landingPage-Background">
     <div class="all-Pokemon">
         <aside class="single-Pokemon" *ngFor="let PokemonObj of Pokemon">
@@ -6,13 +6,15 @@
         </aside>
     </div>
     <div *ngIf="!this.activeSearch" (click)="loadMorePokemon()">
-        <a *ngIf="!this.activeSearch">load 20 more</a>
+        <a *ngIf="!this.activeSearch && this.usedLanguage == 'english'">load 20 more</a>
+        <a *ngIf="!this.activeSearch && this.usedLanguage == 'german'">lade 20 weitere</a>
     </div>
     <div *ngIf="this.activeSearch" (click)="renderOldVersionOfPokemon()">
-        <a *ngIf="this.activeSearch">back</a>
+        <a *ngIf="this.activeSearch && this.usedLanguage == 'english'">back</a>
+        <a *ngIf="this.activeSearch && this.usedLanguage == 'german'">zurück</a>
     </div>
     <div class="backToTop">
         <a href="#top" class="goToTop"><img src="../../assets/img/arrowUp1.png"></a>
     </div>
 </section>
-<app-footer></app-footer>
+<app-footer [usedLanguage]="usedLanguage"></app-footer>

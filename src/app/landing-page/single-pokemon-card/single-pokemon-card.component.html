@@ -2,6 +2,6 @@
     <div>id: {{PokemonObject.id}}</div>
     <div>name: {{PokemonObject.name}}</div>
     <div>typ: {{PokemonObject.types[0].type.name}}</div>
-    <div class="Pokemon-img"><img src="{{PokemonObject.sprites.other.home.front_default}}"></div>
+    <div class="Pokemon-img"><img src="{{PokemonObject.sprites.other.dream_world.front_default}}"></div>
 </section>
 <app-single-pokemon-info *ngIf="openSinglePokemonInfo == true" (CloseInfo)="CloseInfoContainer()" [Pokemon]="PokemonObject"></app-single-pokemon-info>

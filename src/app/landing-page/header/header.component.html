@@ -5,7 +5,7 @@
     <div class="search-container">
         <input [(ngModel)]="searchValue" type="text" class="search-field" placeholder="search for a pokemon"
             *ngIf="language == 'english'">
-        <input type="text" class="search-field" placeholder="suche nach einem Pokemon" *ngIf="language == 'german'">
+        <input [(ngModel)]="searchValue" type="text" class="search-field" placeholder="suche nach einem Pokemon" *ngIf="language == 'german'">
         <a href="#" *ngIf="language == 'english'" (click)="search()"> search </a>
         <a href="#" *ngIf="language == 'german'" (click)="search()"> suchen </a>
         <a href="#" *ngIf="language == 'english'" (click)="openFilter()">filter</a>

@@ -15,6 +15,7 @@ export class HeaderComponent {
   @Input() Pokemon: any = [];
   @Output() filter = new EventEmitter;
   @Output() IndexOfSearchedPokemon = new EventEmitter;
+  @Output() Language = new EventEmitter;
 
   filteredTypes: string[] = [];
 
@@ -49,7 +50,15 @@ export class HeaderComponent {
     } else {
       this.language = 'english';
     }
+    this.sendLanguage(this.language);    
   }
+
+    /**
+   * This function sends the information of the used language to the landing-page-component.ts
+   */
+    sendLanguage(language: string){
+      this.Language.emit(language);   
+    }
 
   /**
    * This function determines the index of the search Pokemon
