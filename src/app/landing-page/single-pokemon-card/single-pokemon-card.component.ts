@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output} from '@angular/core';
 import { SinglePokemonInfoComponent } from './single-pokemon-info/single-pokemon-info.component';
 import { NgClass, NgIf } from '@angular/common';
 
@@ -11,13 +11,16 @@ import { NgClass, NgIf } from '@angular/common';
 })
 export class SinglePokemonCardComponent {
 
-
   openSinglePokemonInfo = false;
   
   @Input() PokemonObject: any;
   @Input() usedLanguage: any;
+  @Input() namesInGerman: string[] = [];
+  @Input() typesInGerman: string [] = [];
 
-  constructor() {}
+  constructor() {
+    console.log('Child: ', this.namesInGerman);  
+  }
 
   openCard() {
     this.openSinglePokemonInfo = true;

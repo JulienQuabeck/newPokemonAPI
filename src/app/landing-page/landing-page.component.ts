@@ -19,6 +19,8 @@ export class LandingPageComponent {
 
   constructor() {
     this.renderPokemon();
+    this.renderNamesInGermanLanguage();
+    this.renderTypesInGermanLanguage();
   }
 
   Pokemon: any = [];
@@ -29,6 +31,8 @@ export class LandingPageComponent {
   activeSearch: boolean = false;
   searchedPokemon: number = 0;
   usedLanguage = 'english';
+  namesInGerman: string[] | any = [];
+  typesInGerman: string[] = [];
 
   /**
    * This function renders the Pokemon, which will be displayed afterwards
@@ -49,9 +53,38 @@ export class LandingPageComponent {
         console.error(e);
       }
     }
-    console.log(this.Pokemon);//muss noch gelöscht werden
+    //console.log(this.Pokemon);//muss noch gelöscht werden
     await this.getAllTypes();
   }
+
+  async renderNamesInGermanLanguage() {
+    for (let i = this.Pokemon.length + 1; i <= this.noOfPokemon; i++) {
+      let urlOfApi = `https://pokeapi.co/api/v2/pokemon-species/${i}/?limit=${this.noOfPokemon}&offset=20`;
+      let response = await fetch(urlOfApi);
+      try {
+        let responseAsJson = await response.json();  
+        this.namesInGerman.push(responseAsJson.names[5]); 
+        console.log('Parent: ',this.namesInGerman);
+                             
+      } catch (e) {
+        console.error(e);
+      }
+    }
+  }
+
+  async renderTypesInGermanLanguage() {
+    // for (let i = this.Pokemon.length + 1; i <= this.noOfPokemon; i++) {
+    //   let urlOfApi = `https://pokeapi.co/api/v2/type/${i}/?limit=${this.noOfPokemon}&offset=20`;
+    //   let response = await fetch(urlOfApi);
+    //   try {
+    //     let responseAsJson = await response.json(); 
+    //     this.typesInGerman.push(responseAsJson.names[5]);
+    //   } catch (e) {
+    //     console.error(e);
+    //   }
+    // }
+  }
+
 
   /**
    * this function loads 20 more Pokemon
@@ -59,6 +92,8 @@ export class LandingPageComponent {
   loadMorePokemon() {
     this.noOfPokemon += +20;
     this.renderPokemon();
+    this.renderNamesInGermanLanguage();
+    this.renderTypesInGermanLanguage();
   }
 
   /**
@@ -77,10 +112,10 @@ export class LandingPageComponent {
     }
   }
 
-/**
- * This function receives the filtered Types and displays the Pokemon which are from this typ
- * @param type []
- */
+  /**
+   * This function receives the filtered Types and displays the Pokemon which are from this typ
+   * @param type []
+   */
   collectFilter(type: string) {
     this.Pokemon = [];
     if (type == '') {
@@ -138,8 +173,8 @@ export class LandingPageComponent {
    * This function changes the langues and loads the Pokemon again
    * @param language:string
    */
-  changeLanguage(language:string){
-    this.usedLanguage = language; 
+  changeLanguage(language: string) {
+    this.usedLanguage = language;
     this.Pokemon = [];
     this.renderPokemon();
   }

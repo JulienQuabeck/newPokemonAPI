@@ -7,4 +7,4 @@
     <div *ngIf="usedLanguage == 'german'">Typ: {{PokemonObject.types[0].type.name}}</div>
     <div class="Pokemon-img"><img src="{{PokemonObject.sprites.other.dream_world.front_default}}"></div>
 </section>
-<app-single-pokemon-info *ngIf="openSinglePokemonInfo == true" (CloseInfo)="CloseInfoContainer()" [Pokemon]="PokemonObject"></app-single-pokemon-info>
+<app-single-pokemon-info *ngIf="openSinglePokemonInfo == true" (CloseInfo)="CloseInfoContainer()" [Pokemon]="PokemonObject" [usedLanguage]="usedLanguage"></app-single-pokemon-info>

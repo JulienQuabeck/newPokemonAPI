@@ -4,29 +4,35 @@
     </div>
     <div class="Pokemon-img"><img src="{{Pokemon.sprites.other.dream_world.front_default}}"></div>
     <div class="Category">
-        <div class="category-name">id: </div>
+        <div *ngIf="usedLanguage == 'english'" class="category-name">id: </div>
+        <div *ngIf="usedLanguage == 'german'" class="category-name">Id: </div>
         <div class="singleElements">{{Pokemon.id}}</div>
     </div>
     <div class="Category">
-        <div class="category-name">name: </div>
+        <div *ngIf="usedLanguage == 'english'" class="category-name">name: </div>
+        <div *ngIf="usedLanguage == 'german'" class="category-name">Name: </div>
         <div class="singleElements">{{Pokemon.name}}</div>
     </div>
     <div class="Category">
-        <div class="category-name">typ: </div>
+        <div *ngIf="usedLanguage == 'english'" class="category-name">typ: </div>
+        <div *ngIf="usedLanguage == 'german'" class="category-name">Typ: </div>
         <div class="ngFor" *ngFor="let types of Pokemon.types, let no = index">
             <p>{{types.type.name}},</p>
         </div>
     </div>
     <div class="Category">
-        <div class="category-name">height: </div>
+        <div *ngIf="usedLanguage == 'english'" class="category-name">height: </div>
+        <div *ngIf="usedLanguage == 'german'" class="category-name">Größe: </div>
         <div class="singleElements">{{Pokemon.height}}</div>
     </div>
     <div class="Category">
-        <div class="category-name">weight: </div>
+        <div *ngIf="usedLanguage == 'english'" class="category-name">weight: </div>
+        <div *ngIf="usedLanguage == 'german'" class="category-name">Gewicht: </div>
         <div class="singleElements">{{Pokemon.weight}}</div>
     </div>
     <div class="Category">
-        <div class="category-name">moves: </div>
+        <div *ngIf="usedLanguage == 'english'" class="category-name">moves: </div>
+        <div *ngIf="usedLanguage == 'german'" class="category-name">Attacken: </div>
         <div class="scroll">
             <div class="info container" *ngFor="let moves of Pokemon.moves, let no = index">
                 {{no+1}}. {{moves.move.name}}
@@ -34,14 +40,15 @@
         </div>
     </div>
     <div class="Category">
-        <div class="category-name">stats: </div>
+        <div *ngIf="usedLanguage == 'english'" class="category-name">stats: </div>
+        <div *ngIf="usedLanguage == 'german'" class="category-name">Statistiken: </div>
         <div class="scroll">
             <div class="info container" *ngFor="let stats of Pokemon.stats, let no = index">
                 {{no+1}}. {{stats.stat.name}}: {{stats.base_stat}}
             </div>
         </div>
     </div>
-    <app-canvas [PokemonStats]="Pokemon.stats"></app-canvas>
+    <app-canvas [Pokemon]="Pokemon"></app-canvas>
 
 
 

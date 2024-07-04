@@ -11,12 +11,13 @@ import { CanvasJSAngularChartsModule } from '@canvasjs/angular-charts';
   styleUrl: './canvas.component.scss'
 })
 export class CanvasComponent {
+	
+@Input()Pokemon: any = [];
 
   constructor() {
-    console.log(this.PokemonStats);
+    console.log('Stats: ',this.Pokemon);
   }
 
-@Input()PokemonStats: any = [];
 
   title = 'angular17ssrapp';
 	chartOptions = {
@@ -28,7 +29,7 @@ export class CanvasComponent {
 			includeZero: true
 		},
 		data: [{
-			type: "column", //change type to bar, line, area, pie, etc
+			type: "column", //change type to (column) bar, line, area, pie, etc
 			//indexLabel: "{y}", //Shows y value on all Data Points
 			indexLabelFontColor: "#5A5757",
 			dataPoints: [

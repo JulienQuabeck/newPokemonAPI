@@ -2,7 +2,7 @@
 <section class="landingPage-Background">
     <div class="all-Pokemon">
         <aside class="single-Pokemon" *ngFor="let PokemonObj of Pokemon">
-            <app-single-pokemon-card [PokemonObject]="PokemonObj" [usedLanguage]="usedLanguage"></app-single-pokemon-card>
+            <app-single-pokemon-card [PokemonObject]="PokemonObj" [usedLanguage]="usedLanguage" [namesInGerman]="namesInGerman" [typesInGerman]="typesInGerman"></app-single-pokemon-card>
         </aside>
     </div>
     <div *ngIf="!this.activeSearch" (click)="loadMorePokemon()">
