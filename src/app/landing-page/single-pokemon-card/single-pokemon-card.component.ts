@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output} from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { SinglePokemonInfoComponent } from './single-pokemon-info/single-pokemon-info.component';
 import { NgClass, NgIf } from '@angular/common';
 
@@ -9,24 +9,26 @@ import { NgClass, NgIf } from '@angular/common';
   templateUrl: './single-pokemon-card.component.html',
   styleUrl: './single-pokemon-card.component.scss'
 })
-export class SinglePokemonCardComponent {
+export class SinglePokemonCardComponent implements OnInit {
 
   openSinglePokemonInfo = false;
-  
+
   @Input() PokemonObject: any;
   @Input() usedLanguage: any;
-  @Input() namesInGerman: string[] = [];
-  @Input() typesInGerman: string [] = [];
+  @Input() namesInGerman: any = [];
+  // @Input() typesInGerman: string[] = [];
+  @Input() movesInGerman: string[] = []
+  typesInGerman:any = [];
+  test:any = [];
 
-  constructor() {
-    console.log('Child: ', this.namesInGerman);  
-  }
+  ngOnInit(): void {}
+
 
   openCard() {
     this.openSinglePokemonInfo = true;
   }
 
-  CloseInfoContainer(){
+  CloseInfoContainer() {
     this.openSinglePokemonInfo = false;
   }
 }

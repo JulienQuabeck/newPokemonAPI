@@ -2,7 +2,7 @@
 <section class="landingPage-Background">
     <div class="all-Pokemon">
         <aside class="single-Pokemon" *ngFor="let PokemonObj of Pokemon">
-            <app-single-pokemon-card [PokemonObject]="PokemonObj" [usedLanguage]="usedLanguage" [namesInGerman]="namesInGerman" [typesInGerman]="typesInGerman"></app-single-pokemon-card>
+            <app-single-pokemon-card [PokemonObject]="PokemonObj" [usedLanguage]="usedLanguage" [namesInGerman]="namesInGerman" [movesInGerman]="movesInGerman"></app-single-pokemon-card>
         </aside>
     </div>
     <div *ngIf="!this.activeSearch" (click)="loadMorePokemon()">
@@ -14,7 +14,7 @@
         <a *ngIf="this.activeSearch && this.usedLanguage == 'german'">zurück</a>
     </div>
     <div class="backToTop">
-        <a href="#top" class="goToTop"><img src="../../assets/img/arrowUp1.png"></a>
+        <a href="#top" class="goToTop"><img src="/assets/img/arrowUp1.png"></a>
     </div>
 </section>
 <app-footer [usedLanguage]="usedLanguage"></app-footer>

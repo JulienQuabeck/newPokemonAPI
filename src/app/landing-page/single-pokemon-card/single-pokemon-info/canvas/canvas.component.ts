@@ -1,49 +1,71 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { CanvasJSAngularChartsModule } from '@canvasjs/angular-charts';
 
 @Component({
-  selector: 'app-canvas',
-  standalone: true,
-  imports: [CommonModule, RouterOutlet, CanvasJSAngularChartsModule],
-  templateUrl: './canvas.component.html',
-  styleUrl: './canvas.component.scss'
+	selector: 'app-canvas',
+	standalone: true,
+	imports: [CommonModule, RouterOutlet, CanvasJSAngularChartsModule],
+	templateUrl: './canvas.component.html',
+	styleUrl: './canvas.component.scss'
 })
-export class CanvasComponent {
-	
-@Input()Pokemon: any = [];
+export class CanvasComponent implements OnInit {
 
-  constructor() {
-    console.log('Stats: ',this.Pokemon);
-  }
+	@Input() Pokemon: any = [];
 
+	HP: number = 0;
+	ATTACK: number = 0;
+	DEFENSE: number = 0;
+	SPECIALATTACK: number = 0;
+	SPECIALDEFENSE: number = 0;
+	SPEED: number = 0;
+	title = `Stats`;
+	chartOptions: any;
 
-  title = 'angular17ssrapp';
-	chartOptions = {
-		title: {
-			text: "Angular Column Chart with Index Labels"
-		},
-		animationEnabled: true,
-		axisY: {
-			includeZero: true
-		},
-		data: [{
-			type: "column", //change type to (column) bar, line, area, pie, etc
-			//indexLabel: "{y}", //Shows y value on all Data Points
-			indexLabelFontColor: "#5A5757",
-			dataPoints: [
-				{ x: 10, y: 71 },
-				{ x: 20, y: 55 },
-				{ x: 30, y: 50 },
-				{ x: 40, y: 65 },
-				{ x: 50, y: 71 },
-				{ x: 60, y: 92, indexLabel: "Highest\u2191" },
-				{ x: 70, y: 68 },
-				{ x: 80, y: 38, indexLabel: "Lowest\u2193"  },
-				{ x: 90, y: 54 },
-				{ x: 100, y: 60 }
-			]
-		}]
+	ngOnInit(): void {		
+		if (this.Pokemon && this.Pokemon.stats) {
+			let hp: number = this.Pokemon.stats[0].base_stat;
+			let attack: number = this.Pokemon.stats[1].base_stat;
+			let defense: number = this.Pokemon.stats[2].base_stat;
+			let specialAttack: number = this.Pokemon.stats[3].base_stat;
+			let specialDefense: number = this.Pokemon.stats[4].base_stat;
+			let speed: number = this.Pokemon.stats[5].base_stat;
+			this.HP = hp;
+			this.ATTACK = attack;
+			this.DEFENSE = defense;
+			this.SPECIALATTACK = specialAttack;
+			this.SPECIALDEFENSE = specialAttack;
+			this.SPEED = speed;
+		}
+		this.chartOptions = {
+			title: {
+				text: ""
+			},
+			animationEnabled: true,
+			axisY: {
+				includeZero: true
+			},
+			axisX: {
+				labelFormatter: function (e:any) {
+					return e.label;
+				}
+			},
+			data: [{
+				type: "column", //change type to (column) bar, line, area, pie, etc
+				//indexLabel: "{y}", //Shows y value on all Data Points
+				indexLabelFontColor: "#5A5757",
+				dataPoints: [
+					{ x: 0, y: this.HP, label:"hp" },
+					{ x: 1, y: this.ATTACK, label: "attack" },
+					{ x: 2, y: this.DEFENSE, label: "defense" },
+					{ x: 3, y: this.SPECIALATTACK, label: "special-attack" },
+					{ x: 4, y: this.SPECIALDEFENSE, label: "special-defense" },
+					{ x: 5, y: this.SPEED, label: "speed" },
+				]
+			}]
+		}
 	}
+
+
 }
