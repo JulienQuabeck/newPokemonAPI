@@ -1,1 +1,5 @@
-<canvasjs-chart [options]="chartOptions"></canvasjs-chart>
+@if(usedLanguage == 'english'){
+    <canvasjs-chart [options]="chartOptions"></canvasjs-chart>
+}@else {
+    <canvasjs-chart [options]="chartOptionsGer"></canvasjs-chart>
+}
