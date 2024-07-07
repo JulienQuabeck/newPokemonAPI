@@ -2,12 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { SinglePokemonCardComponent } from './single-pokemon-card/single-pokemon-card.component';
-import { NgClass, NgFor, NgIf } from '@angular/common';
+import { CommonModule, NgClass, NgFor, NgIf, NgStyle } from '@angular/common';
 
 @Component({
   selector: 'app-landing-page',
   standalone: true,
-  imports: [HeaderComponent, FooterComponent, SinglePokemonCardComponent, NgFor, NgIf, NgClass],
+  imports: [HeaderComponent, FooterComponent, SinglePokemonCardComponent, NgFor, NgIf, NgClass, CommonModule],
   templateUrl: './landing-page.component.html',
   styleUrl: './landing-page.component.scss'
 })
@@ -15,12 +15,17 @@ export class LandingPageComponent implements OnInit {
 
   allTypes: string[] = [];
   indexOfSearchedPokemon: any;
+  openedPokemonInfo: boolean = false;
+  overflowScroll = '';
+  overflowHidden = 'hidden';
 
   ngOnInit(): void {
+    this.renderAllData();
+  }
+
+  async renderAllData() {
     this.renderPokemon();
-    this.renderNamesInGermanLanguage();
-    // this.renderTypesInGermanLanguage();
-    this.renderMovesInGermanLanguage();
+    this.renderTypes();
   }
 
   Pokemon: any = [];
@@ -32,8 +37,12 @@ export class LandingPageComponent implements OnInit {
   searchedPokemon: number = 0;
   usedLanguage = 'english';
   namesInGerman: string[] | any = [];
-  typesInGerman: string[] = [];
   movesInGerman: string[] = [];
+  typesOfAllPokemon: string[] = [];
+  typesOfOnePokemonEng: string[] = [];
+  typesOfOnePokemon: string[] | any = [];
+  typesOfAllPokemonEng: string[] | any = [];
+  typesInGerman: string[] = [];
 
   /**
    * This function renders the Pokemon, which will be displayed afterwards
@@ -54,60 +63,38 @@ export class LandingPageComponent implements OnInit {
         console.error(e);
       }
     }
-    //console.log(this.Pokemon);//muss noch gelöscht werden
     this.getAllTypes();
   }
 
-  async renderNamesInGermanLanguage() {
-    for (let i = this.Pokemon.length + 1; i <= this.noOfPokemon; i++) {
-      let urlOfApi = `https://pokeapi.co/api/v2/pokemon-species/${i}/?limit=${this.noOfPokemon}&offset=20`;
-      let response = await fetch(urlOfApi);
-      try {
-        let responseAsJson = await response.json();  
-        this.namesInGerman.push(responseAsJson.names[5]);                              
-      } catch (e) {
-        console.error(e);
+  /**
+   * This function renders all types in the english languages
+   */
+  async renderTypes() {
+    for (let i = 0; i < this.Pokemon.length; i++) {
+      for (let j = 0; j < this.Pokemon[i].types.length; j++) {
+        let url = this.Pokemon[i].types[j].type.url;
+        let response = await fetch(url);
+        try {
+          let responseAsJson = await response.json();
+          let typInEng = responseAsJson.name;
+          this.typesOfOnePokemonEng.push(typInEng);
+        } catch (e) {
+          console.error(e);
+        }
       }
+      this.typesOfAllPokemonEng.push(this.typesOfOnePokemonEng);
+      this.typesOfOnePokemonEng = [];
     }
   }
-
-  // async renderTypesInGermanLanguage() {
-  //   console.log(this.Pokemon);
-  //   // for(let  i = 0; i < this.Pokemon.types.length; i++){
-  //   //   let url = this.Pokemon.types[i].type.url;
-  //   //   let response = await fetch(url);      
-  //   //   try {
-  //   //     let responseAsJson = await response.json();  
-  //   //     this.typesInGerman.push(responseAsJson.names[4].name);   
-  //   //     console.log(this.typesInGerman);             
-  //   //   } catch (e) {
-  //   //     console.error(e);
-  //   //   }
-  //   // }
-  // }
-
-  async renderMovesInGermanLanguage(){
-    for (let i = this.Pokemon.length + 1; i <= this.noOfPokemon; i++) {
-      let urlOfApi = `https://pokeapi.co/api/v2/move/${i}/?limit=${this.noOfPokemon}&offset=20`;
-      let response = await fetch(urlOfApi);
-      try {
-        let responseAsJson = await response.json(); 
-        this.movesInGerman.push(responseAsJson.names[5]);        
-      } catch (e) {
-        console.error(e);
-      }
-    }
-  }
-
 
   /**
    * this function loads 20 more Pokemon
    */
-  loadMorePokemon() {
-    this.noOfPokemon += +20;
-    this.renderPokemon();
-    this.renderNamesInGermanLanguage();
-    // this.renderTypesInGermanLanguage();
+  async loadMorePokemon() {
+    this.noOfPokemon += 20;
+    this.typesOfAllPokemon = [];
+    this.typesOfAllPokemonEng = [];
+    await this.renderAllData();
   }
 
   /**
@@ -155,8 +142,8 @@ export class LandingPageComponent implements OnInit {
   searchPokemonWithIndex(indexOfSearchedPokemon: number) {
     this.searchedPokemon = indexOfSearchedPokemon;
     this.Pokemon = [];
-    this.rendersearchedPokemon();
     this.activeSearch = true;
+    this.rendersearchedPokemon();
   }
 
   /**
@@ -183,13 +170,7 @@ export class LandingPageComponent implements OnInit {
     this.renderPokemon();
   }
 
-  /**
-   * This function changes the langues and loads the Pokemon again
-   * @param language:string
-   */
-  changeLanguage(language: string) {
-    this.usedLanguage = language;
-    this.Pokemon = [];
-    this.renderPokemon();
+  scrollHidden() {
+    this.openedPokemonInfo = true;
   }
 }

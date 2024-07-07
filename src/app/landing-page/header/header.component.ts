@@ -65,7 +65,6 @@ export class HeaderComponent {
    */
   search() {
     if (this.searchValue == '') {
-
     } else {
       this.searchValue = this.searchValue.toLowerCase();
       for (let i = 0; i < this.Pokemon.length; i++) {

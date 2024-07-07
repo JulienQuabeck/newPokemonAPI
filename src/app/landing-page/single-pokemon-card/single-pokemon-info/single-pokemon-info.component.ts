@@ -13,18 +13,13 @@ import { CanvasComponent } from './canvas/canvas.component';
 export class SinglePokemonInfoComponent implements OnInit {
 
   @Input() Pokemon: any;
-  @Input() usedLanguage: string = '';
-  @Input() namesInGerman: any = [];
-  @Input() movesInGerman: string[] = [];
   @Output() CloseInfo = new EventEmitter;
 
   movesEng: string[] = [];
   movesGer: any[] = [];
-  typesEng: any[] = [];
-  typesGer: any[] = [];
 
   ngOnInit(): void {
-    this.renderMoves();
+    this.renderMoves();    
   }
 
   async renderMoves() {
@@ -34,7 +29,6 @@ export class SinglePokemonInfoComponent implements OnInit {
       try {
         let responseAsJson = await response.json();        
         this.movesEng.push(responseAsJson.name);
-        this.movesGer.push(responseAsJson.names[4]);
       } catch (e) {
         console.error(e);
       }

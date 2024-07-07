@@ -13,7 +13,6 @@ import { CanvasJSAngularChartsModule } from '@canvasjs/angular-charts';
 export class CanvasComponent implements OnInit {
 
 	@Input() Pokemon: any = [];
-	@Input() usedLanguage: string = '';
 
 	HP: number = 0;
 	ATTACK: number = 0;
@@ -26,20 +25,19 @@ export class CanvasComponent implements OnInit {
 	chartOptionsGer: any;
 
 	ngOnInit(): void {		
-		if (this.Pokemon && this.Pokemon.stats) {
-			let hp: number = this.Pokemon.stats[0].base_stat;
-			let attack: number = this.Pokemon.stats[1].base_stat;
-			let defense: number = this.Pokemon.stats[2].base_stat;
-			let specialAttack: number = this.Pokemon.stats[3].base_stat;
-			let specialDefense: number = this.Pokemon.stats[4].base_stat;
-			let speed: number = this.Pokemon.stats[5].base_stat;
-			this.HP = hp;
-			this.ATTACK = attack;
-			this.DEFENSE = defense;
-			this.SPECIALATTACK = specialAttack;
-			this.SPECIALDEFENSE = specialAttack;
-			this.SPEED = speed;
-		}
+		let hp: number = this.Pokemon.stats[0].base_stat;
+		let attack: number = this.Pokemon.stats[1].base_stat;
+		let defense: number = this.Pokemon.stats[2].base_stat;
+		let specialAttack: number = this.Pokemon.stats[3].base_stat;
+		let specialDefense: number = this.Pokemon.stats[4].base_stat;
+		let speed: number = this.Pokemon.stats[5].base_stat;
+		this.HP = hp;
+		this.ATTACK = attack;
+		this.DEFENSE = defense;
+		this.SPECIALATTACK = specialAttack;
+		this.SPECIALDEFENSE = specialDefense;
+		this.SPEED = speed;		
+
 		this.chartOptions = {
 			title: {
 				text: ""
@@ -49,7 +47,7 @@ export class CanvasComponent implements OnInit {
 				includeZero: true
 			},
 			axisX: {
-				labelFormatter: function (e:any) {
+				labelFormatter: function (e: any) {
 					return e.label;
 				}
 			},
@@ -58,7 +56,7 @@ export class CanvasComponent implements OnInit {
 				//indexLabel: "{y}", //Shows y value on all Data Points
 				indexLabelFontColor: "#5A5757",
 				dataPoints: [
-					{ x: 0, y: this.HP, label:"hp" },
+					{ x: 0, y: this.HP, label: "hp" },
 					{ x: 1, y: this.ATTACK, label: "attack" },
 					{ x: 2, y: this.DEFENSE, label: "defense" },
 					{ x: 3, y: this.SPECIALATTACK, label: "special-attack" },
@@ -67,35 +65,5 @@ export class CanvasComponent implements OnInit {
 				]
 			}]
 		}
-
-		this.chartOptionsGer = {
-			title: {
-				text: ""
-			},
-			animationEnabled: true,
-			axisY: {
-				includeZero: true
-			},
-			axisX: {
-				labelFormatter: function (e:any) {
-					return e.label;
-				}
-			},
-			data: [{
-				type: "column", //change type to (column) bar, line, area, pie, etc
-				//indexLabel: "{y}", //Shows y value on all Data Points
-				indexLabelFontColor: "#5A5757",
-				dataPoints: [
-					{ x: 0, y: this.HP, label:"Lebenspunkte" },
-					{ x: 1, y: this.ATTACK, label: "Angriff" },
-					{ x: 2, y: this.DEFENSE, label: "Verteidigung" },
-					{ x: 3, y: this.SPECIALATTACK, label: "Spezial-Angriff" },
-					{ x: 4, y: this.SPECIALDEFENSE, label: "Spezial-Verteidigung" },
-					{ x: 5, y: this.SPEED, label: "Geschwindigkeit" },
-				]
-			}]
-		}
 	}
-
-
 }

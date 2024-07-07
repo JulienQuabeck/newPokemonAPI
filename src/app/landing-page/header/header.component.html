@@ -3,19 +3,9 @@
         <img src="/assets/img/logo1.png">
     </div>
     <div class="search-container">
-        @if(language == 'german'){
-        <input [(ngModel)]="searchValue" type="text" class="search-field" placeholder="suche nach einem Pokemon">
-        <a href="#" (click)="search()"> suchen </a>
-        <a href="#" (click)="openFilter()">Filter</a>
-        }@else{
         <input [(ngModel)]="searchValue" type="text" class="search-field" placeholder="search for a pokemon">
         <a href="#" (click)="search()"> search </a>
         <a href="#" (click)="openFilter()">filter</a>
-        }
-
-    </div>
-    <div class="languages" (click)="switchLanguage()">
-        <img src="./assets/img/languages/{{language}}.png">
     </div>
     @if(openFilterContainer==true){
     <div class="filter-container">

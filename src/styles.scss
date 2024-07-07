@@ -5,12 +5,13 @@
   font-family: 'Aoboshi One';
   font-style: normal;
   font-weight: 400;
-  src: url('./assets/fonts/aoboshi-one-v10-latin-regular.woff2') format('woff2');
+  src: url('/assets/fonts/aoboshi-one-v10-latin-regular.woff2') format('woff2');
   /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
 }
 
 body {
   margin: 0;
+  // overflow: hidden;
 }
 
 ::-webkit-scrollbar {

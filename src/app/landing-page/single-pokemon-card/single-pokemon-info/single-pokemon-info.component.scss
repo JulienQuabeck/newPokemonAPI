@@ -1,10 +1,9 @@
 section {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom:50px;
-    max-height:92vh;
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    right: 20px;
+    bottom: 0;
     background-color: rgb(5, 23, 41);
     border: 1px solid whitesmoke;
     box-shadow: 10px 10px 10px 10px black;
@@ -76,7 +75,7 @@ section {
 
 .Category {
     display: flex;
-    margin-bottom:20px;
+    margin-bottom: 20px;
 
     .category-name {
         margin-left: 20px;
