@@ -24,6 +24,9 @@ export class HeaderComponent {
   language = 'english';
   pokemonNames: string[] = [];
   indexOfSearch: number = 0;
+  openMenu = false;
+  openMenuSearch = false;
+  openMenuFilter = false;
 
   /**
    * This function sends all Pokemon types to the landing-page.Component.ts
@@ -74,6 +77,9 @@ export class HeaderComponent {
       this.sendIndexOfSearchedPokemon();
       this.searchValue = '';
     }
+    if(this.openMenuSearch == true){
+      this.openMenuSearch = false;
+    }
   }
 
   /**
@@ -93,5 +99,33 @@ export class HeaderComponent {
     } else {
       this.openFilterContainer = false;
     }
+  }
+
+  openOrCloseMenu(){
+    if(this.openMenu == false){
+      this.openMenuSearch = false;
+      this.openMenuFilter = false;
+      this.openMenu = true;
+    }else{
+      this.openMenu = false;
+    }    
+  }
+
+  openSearchContainerFromMenu(){
+    if(this.openMenuSearch == false){
+      this.openMenuSearch = true;
+      this.openMenu = false;
+    }else{
+      this.openMenuSearch = false;
+    }   
+  }
+
+  openFilterContainerFromMenu(){
+    if(this.openMenuFilter == false){
+      this.openMenuFilter = true;
+      this.openMenu = false;
+    }else{
+      this.openMenuFilter = false;
+    } 
   }
 }

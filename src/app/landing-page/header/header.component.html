@@ -1,11 +1,49 @@
 <section class="header-container">
     <div class="logo">
-        <img src="/assets/img/logo1.png">
+        <img src="./assets/img/logo.png">
     </div>
     <div class="search-container">
         <input [(ngModel)]="searchValue" type="text" class="search-field" placeholder="search for a pokemon">
         <a href="#" (click)="search()"> search </a>
         <a href="#" (click)="openFilter()">filter</a>
+    </div>
+    <div class="burger-menu">
+        <img src="./assets/img/burgerMenu.png" (click)="openOrCloseMenu()">
+        @if(openMenu == true){
+        <div class="background" (click)="openOrCloseMenu()">
+        </div>
+        <div class="menu">
+            <div (click)="openSearchContainerFromMenu()">
+                search
+            </div>
+            <div (click)="openFilterContainerFromMenu()">
+                filter
+            </div>
+        </div>
+        }
+        @if(openMenuSearch == true){
+        <div class="background" (click)="openSearchContainerFromMenu()">
+        </div>
+            <div class="menuSearch">
+                <input [(ngModel)]="searchValue" type="text" class="search-field" placeholder="search for a pokemon">
+                <a href="#" (click)="search()"> search </a>
+            </div>
+
+        }
+
+        @if(openMenuFilter == true){
+        <div class="background" (click)="openFilterContainerFromMenu()">
+        </div>
+            <div class="filter-container-menu">
+                <div class="single-type-menu" *ngFor="let types of types">
+                    <aside>
+                        <input type="checkbox" id="{{types}}" (click)="sendFilterToLandingPage(types)">
+                        <aside>{{types}}</aside>
+                    </aside>
+                </div>
+            </div>
+
+        }
     </div>
     @if(openFilterContainer==true){
     <div class="filter-container">

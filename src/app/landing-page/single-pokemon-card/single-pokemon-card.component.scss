@@ -93,3 +93,9 @@ section {
 .steel {
     background-color: rgba(192, 192, 192, 0.5);
 }
+
+@media(max-width:350px){
+    section{
+        width:280px;
+    }
+}

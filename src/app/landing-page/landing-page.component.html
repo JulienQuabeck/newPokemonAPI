@@ -1,19 +1,20 @@
 <app-header id="top" [types]="allTypes" [Pokemon]="this.Pokemon" (IndexOfSearchedPokemon)="searchPokemonWithIndex($event)" (filter)="collectFilter($event)"></app-header>
 <section class="landingPage-Background">
     <div class="all-Pokemon">
-        <!-- [ngStyle]="{'overflow-y': openedPokemonInfo == false ? overflowScroll : overflowHidden}" -->
         <aside class="single-Pokemon" *ngFor="let PokemonObj of Pokemon">
             <app-single-pokemon-card [PokemonObject]="PokemonObj" [typesInEnglish]="typesOfAllPokemonEng" (openedSinglePokemonInfo)="scrollHidden()"></app-single-pokemon-card>
         </aside>
     </div>
-    <div *ngIf="!this.activeSearch" (click)="loadMorePokemon()">
-        <a *ngIf="!this.activeSearch">load 20 more</a>
-    </div>
-    <div *ngIf="this.activeSearch" (click)="renderOldVersionOfPokemon()">
-        <a *ngIf="this.activeSearch">back</a>
-    </div>
-    <div class="backToTop">
-        <a href="#top" class="goToTop"><img src="/assets/img/arrowUp1.png"></a>
-    </div>
+    <aside class="goToTopAndLoadMore">
+        <div class="backToTop">
+            <a href="#top" class="goToTop"><img src="./assets/img/arrowUp1.png"></a>
+        </div>
+        <div *ngIf="!this.activeSearch" (click)="loadMorePokemon()">
+            <a *ngIf="!this.activeSearch">load 20 more</a>
+        </div>
+        <div *ngIf="this.activeSearch" (click)="renderOldVersionOfPokemon()">
+            <a *ngIf="this.activeSearch">back</a>
+        </div>
+    </aside>
 </section>
-<app-footer [usedLanguage]="usedLanguage"></app-footer>
+<app-footer></app-footer>
